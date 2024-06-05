@@ -41,6 +41,6 @@ model Category {
 
 model Menu {
   id     Int      @id @default(autoincrement())
-  title  DateTime @default(now())
+  title  DateTime @default(now()) @db.Date
   dishes Recipe[]
 }

@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Menu" ALTER COLUMN "title" SET DATA TYPE DATE;

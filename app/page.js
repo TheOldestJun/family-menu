@@ -1,5 +1,5 @@
-import Image from "next/image";
+import ClientPage from "./clientPage";
 
 export default function Home() {
-  return <h1>Main Page</h1>;
+  return <ClientPage />;
 }
