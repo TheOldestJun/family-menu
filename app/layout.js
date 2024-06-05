@@ -19,7 +19,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="ru">
       <body className={`${caveat.variable} font-caveat text-2xl`}>
         {children}
       </body>
