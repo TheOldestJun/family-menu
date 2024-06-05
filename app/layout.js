@@ -1,4 +1,5 @@
 import "./globals.css";
+import Layout from "@/components/Layout";
 
 import { Caveat } from "next/font/google";
 
@@ -19,9 +20,9 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="ru">
+    <html lang="ru" suppressHydrationWarning>
       <body className={`${caveat.variable} font-caveat text-2xl`}>
-        {children}
+        <Layout>{children}</Layout>
       </body>
     </html>
   );
