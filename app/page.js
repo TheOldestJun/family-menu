@@ -1,5 +1,5 @@
-import ClientPage from "./clientPage";
+import MainPage from "./mainPage";
 
 export default function Home() {
-  return <ClientPage />;
+  return <MainPage />;
 }
