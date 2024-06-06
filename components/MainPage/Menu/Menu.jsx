@@ -16,7 +16,7 @@ export default function Menu() {
     const categories = data.map(category => {
         return (
             <div
-                className={` cursor-pointer py-1.5 text-3xl md:text-5xl font-caveat text-gray-400`}
+                className={` cursor-pointer py-1.5 text-3xl sm:text-4xl md:text-5xl font-caveat text-gray-400`}
                 key={category.id}
             >
                 <Link href={`/menu/${category.url}`}>{category.title}</Link>

@@ -14,8 +14,8 @@ export const metadata = {
   title: "Че бум хавать?",
   description: "Генератор меню на неделю",
   icons: {
-    icon: "/icons/favicon.png",
-    apple: "/icons/favicon.png",
+    icon: "/icons/favicon.webp",
+    apple: "/icons/favicon.webp",
   },
 };
 
