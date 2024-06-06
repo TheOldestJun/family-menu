@@ -10,21 +10,22 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
 model User {
-  id String @id @default(cuid())
-  name String @unique
+  id       String @id @default(cuid())
+  name     String @unique
   password String
 }
 
 model Product {
-  id       Int     @id @default(autoincrement())
-  title    String  @unique
+  id       Int        @id @default(autoincrement())
+  title    String     @unique
   recipe   Recipe[]
+  shopList ShopList[]
 }
 
 model Recipe {
@@ -49,4 +50,10 @@ model Menu {
   id     Int      @id @default(autoincrement())
   title  DateTime @default(now()) @db.Date
   dishes Recipe[]
+}
+
+model ShopList {
+  id        Int     @id @default(autoincrement())
+  product   Product @relation(fields: [productId], references: [id])
+  productId Int
 }
