@@ -20,7 +20,7 @@ export default function MobileNav({ children }) {
                     <DropdownMenuTrigger asChild>
                         <Image src={"/icons/menu-bar.webp"} width={30} height={30} alt={"menu"} />
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent className="w-[65vw] opacity-80 md:hidden">
+                    <DropdownMenuContent className="w-[65vw] opacity-80 md:hidden mr-5">
                         <DropdownMenuItem>
                             <div
                                 className={`mr-4 cursor-pointer py-1.5 text-4xl font-caveat`}
@@ -29,7 +29,7 @@ export default function MobileNav({ children }) {
                             </div>
                         </DropdownMenuItem>
                         <DropdownMenuItem>
-                            <div className="text-4xl font-caveat" onClick={() => setShowLoginForm(!showLoginForm)}>
+                            <div className="text-4xl font-caveat">
                                 Войти
                             </div>
                         </DropdownMenuItem>
