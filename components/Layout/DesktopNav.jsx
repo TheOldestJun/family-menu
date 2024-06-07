@@ -12,7 +12,7 @@ export default function DesktopNav() {
                 >
                     <Link href="/">Меню на неделю</Link>
                 </div>
-                <div className="text-4xl font-caveat" onClick={() => setShowLoginForm(!showLoginForm)}>
+                <div className="text-4xl font-caveat cursor-pointer" onClick={() => setShowLoginForm(!showLoginForm)}>
                     {showLoginForm ? "Не входить" : "Войти"}
                 </div>
                 <div

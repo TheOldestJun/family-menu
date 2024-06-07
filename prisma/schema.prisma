@@ -56,4 +56,5 @@ model ShopList {
   id        Int     @id @default(autoincrement())
   product   Product @relation(fields: [productId], references: [id])
   productId Int
+  done      Boolean @default(false)
 }
