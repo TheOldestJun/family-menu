@@ -1,27 +1,39 @@
 import Image from "next/image"
+import { useState } from "react"
+
+let mockData = [
+    { id: 1, product: "Potatoes", done: false },
+    { id: 2, product: "Tomatoes", done: true },
+    { id: 3, product: "Carrots", done: false },
+    { id: 4, product: "Cucumbers", done: true },
+]
 
 export default function ShoppingList() {
 
+    const shopList = mockData.map((item) => {
+        const [done, setDone] = useState(item.done)
+        const handleClick = () => {
+            setDone(!done)
+        }
+        return (
+            <div className="flex relative" key={item.id}>
+                <Image
+                    src={"/img/shop-list-item.webp"}
+                    width={450}
+                    height={30}
+                    alt="shopping list item background"
+                />
+                <div className="fixed" onClick={handleClick}>
+                    <div className={`text-3xl font-caveat text-gray-600 ml-20 cursor-pointer ${done ? 'line-through' : ''}`}>
+                        {item.product}
+                    </div>
+                </div>
+            </div>
+        )
+    })
     return (
         <>
-            <div className="flex relative" >
-                <Image
-                    src={"/img/shop-list-item.webp"}
-                    width={450}
-                    height={30}
-                    alt="shopping list item background"
-                />
-                <div className="text-3xl font-caveat text-gray-600 fixed ml-16">Shopping list Item one</div>
-            </div>
-            <div className="flex relative" >
-                <Image
-                    src={"/img/shop-list-item.webp"}
-                    width={450}
-                    height={30}
-                    alt="shopping list item background"
-                />
-                <div className="text-3xl font-caveat text-gray-600 fixed ml-16"><del>Shopping list Item two</del></div>
-            </div>
+            {shopList}
         </>
     )
 }
