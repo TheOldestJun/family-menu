@@ -6,6 +6,12 @@ let mockData = [
     { id: 2, product: "Tomatoes", done: true },
     { id: 3, product: "Carrots", done: false },
     { id: 4, product: "Cucumbers", done: true },
+    { id: 5, product: "Onions", done: false },
+    { id: 6, product: "Cabbage", done: true },
+    { id: 7, product: "Broccoli", done: false },
+    { id: 8, product: "Eggplant", done: true },
+    { id: 9, product: "Spinach", done: false },
+    { id: 10, product: "Cauliflower", done: true },
 ]
 
 export default function ShoppingList() {

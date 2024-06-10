@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react";
+
 import DesktopNav from "./DesktopNav";
 import MobileNav from "./MobileNav";
 

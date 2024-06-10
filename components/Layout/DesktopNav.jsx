@@ -1,26 +1,14 @@
 import Link from "next/link";
 import {
     Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogHeader,
-    DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Button } from "../ui/button";
-import { useState } from "react";
-import axios from "axios";
-import { setLogout } from "@/store/reducers/loginSlice";
-import { useDispatch, useSelector } from "react-redux";
-import toast from "react-hot-toast";
-import { Login, Confirm } from "../Dialogs";
+import { useSelector } from "react-redux";
+import { Login } from "../Dialogs";
 
 export default function DesktopNav() {
 
     const login = useSelector((state) => state.login);
-    const dispatch = useDispatch();
 
     return (
         <nav className="text-secondary-foreground hidden md:block">
