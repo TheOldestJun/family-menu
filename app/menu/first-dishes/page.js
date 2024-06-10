@@ -1,7 +1,7 @@
 export default function Page() {
   return (
     <>
-      <h1>Страница завтраков</h1>
+      <h1>Страница первых блюд</h1>
     </>
   );
 }
