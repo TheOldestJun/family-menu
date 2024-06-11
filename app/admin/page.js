@@ -26,7 +26,12 @@ export default function Page() {
   const { data, error, isLoading } = useGetAllProductsQuery({
     refetchOnMountOrArgChange: true,
   });
-  if (isLoading) return <h1>Loading...</h1>;
+  if (isLoading)
+    return (
+      <div className="h-screen flex items-center justify-center">
+        <div className="text-3xl text-gray-600">Загрузка...</div>
+      </div>
+    );
   if (error) return <h1>Error</h1>;
 
   let products = data?.map((product) => {
