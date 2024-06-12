@@ -1,5 +1,6 @@
 import CreatableSelect from "react-select/creatable"
 import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 export default function ProductSelect({ options, value, isMulti, onCreateOption, onSelectedOption }) {
     const customStyles = {
@@ -45,6 +46,7 @@ export default function ProductSelect({ options, value, isMulti, onCreateOption,
     return (
         <CreatableSelect
             isClearable
+            unstyled
             isMulti={isMulti}
             noOptionsMessage={() => "Ничего нет"}
             placeholder="Выберите продукт"
@@ -54,16 +56,31 @@ export default function ProductSelect({ options, value, isMulti, onCreateOption,
             value={value}
             createOptionPosition="last"
             formatCreateLabel={
-                (inputValue) => `Создать "${inputValue}?"`}
-            styles={customStyles}
-            theme={(theme) => ({
-                ...theme,
-                borderRadius: '0.75rem',
-                colors: {
-                    ...theme.colors,
-                    primary: '#e21d48',
-                },
-            })}
+                (inputValue) => `Создать "${inputValue}?"`}/* 
+            classNames={{
+                control: ({ isFocused }) => `@apply ${isFocused ? 'border-none' : 'border-none'} w-full h-9 rounded-md !important`,
+                valueContainer: () => '@apply h-9 text-3xl rounded-md !important',
+                multiValue: () => '@apply h-8 rounded-xl bg-primary !important',
+            }} */
+            classNames={{
+                control: ({ isFocused }) => `@apply border border-input rounded-md bg-transparent ${isFocused ? "outline-none ring-1 ring-ring" : ''} !important`,
+                placeholder: () => `@apply text-3xl px-3 !important`,
+                multiValue: () => `@apply rounded-xl bg-secondary mx-2 text-primary overflow-visible !important`,
+                multiValueLabel: () => `@apply px-2 !important`,
+                multiValueRemove: () => `@apply mx-2 !important`,
+                menu: () => `@apply w-full !important bg-card mt-2 rounded-xl text-center text-3xl  !important`,
+                menuList: () => `@apply overflow-y-scroll no-scrollbar !important`,
+                option: () => `@apply hover:bg-secondary !important`,
+            }}
+        /*             styles={customStyles}
+                    theme={(theme) => ({
+                        ...theme,
+                        borderRadius: '0.75rem',
+                        colors: {
+                            ...theme.colors,
+                            primary: '#e21d48',
+                        },
+                    })} */
         />
     )
 }
