@@ -7,21 +7,19 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
+import { Input } from "@/components/ui/input";
 import {
   useGetAllProductsQuery,
   useAddProductMutation,
 } from "@/store/services/products";
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
 import { capitalize } from "@/lib/utils";
 import toast from "react-hot-toast";
-
 import ProductSelect from "@/components/ProductSelect";
+import { getPageData } from "@/lib/utils";
 
-export default function Page() {
+export default function Page({ params }) {
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [addProduct] = useAddProductMutation();
   const { data, error, isLoading } = useGetAllProductsQuery({
@@ -34,28 +32,29 @@ export default function Page() {
       </div>
     );
   if (error) return <h1>Error</h1>;
-
   let products = data?.map((product) => {
     return { value: product.id, label: product.title };
   });
-
   const handleCreateProduct = (value) => {
     addProduct(capitalize(value));
     toast.success("Продукт успешно создан");
   };
   return (
-    <>
-      <Tabs className="mt-2">
-        <TabsList className="w-full">
-          <TabsTrigger value="dishes">
-            <div className="text-2xl">Создать блюдо</div>
-          </TabsTrigger>
-          <TabsTrigger value="users">
-            <div className="text-2xl">Создать пользователя</div>
-          </TabsTrigger>
-        </TabsList>
-        <TabsContent value="dishes">
-          <Card>
+    <div className="flex justify-center">
+      <Card className="mt-2 w-[98%]">
+        <CardTitle className="text-3xl text-center">TODO: Page Title</CardTitle>
+        <Tabs defaultValue="choose" className="mt-2">
+          <TabsList className="flex flex-row mx-12">
+            <TabsTrigger value="choose" className="text-2xl">
+              Выбрать
+            </TabsTrigger>
+            <TabsTrigger value="create" className="text-2xl">
+              Создать
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="choose"></TabsContent>
+          <TabsContent value="create">
             <CardContent className="flex flex-col space-y-1.5 p-6">
               <Input value="Выберите продукт" className="w-full text-3xl" />
               <ProductSelect
@@ -66,10 +65,9 @@ export default function Page() {
                 isMulti={true}
               />
             </CardContent>
-          </Card>
-        </TabsContent>
-        <TabsContent value="users">Make new user tab</TabsContent>
-      </Tabs>
-    </>
+          </TabsContent>
+        </Tabs>
+      </Card>
+    </div>
   );
 }
