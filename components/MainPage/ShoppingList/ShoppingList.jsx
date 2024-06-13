@@ -12,6 +12,12 @@ let mockData = [
     { id: 8, product: "Eggplant", done: true },
     { id: 9, product: "Spinach", done: false },
     { id: 10, product: "Cauliflower", done: true },
+    { id: 11, product: "Parsley", done: false },
+    { id: 12, product: "Garlic", done: true },
+    { id: 13, product: "Pepper", done: false },
+    { id: 14, product: "Mushrooms", done: true },
+    { id: 15, product: "Cinnamon", done: false },
+    { id: 16, product: "Lemon", done: true },
 ]
 
 export default function ShoppingList() {
@@ -30,7 +36,7 @@ export default function ShoppingList() {
                     alt="shopping list item background"
                 />
                 <div className="fixed" onClick={handleClick}>
-                    <div className={`text-3xl font-caveat text-gray-600 ml-20 cursor-pointer ${done ? 'line-through' : ''}`}>
+                    <div className={`text-lg md:text-xl lg:text-3xl font-caveat text-gray-600 ml-20 cursor-pointer ${done ? 'line-through' : ''}`}>
                         {item.product}
                     </div>
                 </div>

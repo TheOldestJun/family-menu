@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 
 export async function POST(request) {
   const body = await request.json();
-  const { name, password } = body;
+  const { name, password, isAdmin } = body;
   if (!name || !password)
     return NextResponse.json(
       { error: "Не указано имя или пароль" },
@@ -27,6 +27,7 @@ export async function POST(request) {
       data: {
         name,
         password: bcrypt.hashSync(password, 10),
+        isAdmin,
       },
     });
     return NextResponse.json(result, { status: 200 });

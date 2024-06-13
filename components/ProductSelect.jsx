@@ -7,7 +7,7 @@ export default function ProductSelect({ options, value, isMulti, onCreateOption,
             unstyled
             isMulti={isMulti}
             noOptionsMessage={() => "Ничего нет"}
-            placeholder="Выберите продукт"
+            placeholder="Выберите продукт..."
             onChange={(value) => onSelectedOption(value)}
             onCreateOption={(value => onCreateOption(value))}
             options={options}

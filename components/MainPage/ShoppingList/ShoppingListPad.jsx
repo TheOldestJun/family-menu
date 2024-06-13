@@ -13,10 +13,10 @@ export default function ShoppingListPad({ className }) {
                             height={181}
                             alt="shopping list background image top"
                         />
-                        <div className="fixed text-7xl font-caveat text-gray-900 ml-20 mt-2">
+                        <div className="fixed text-5xl sm:text-7xl font-caveat text-gray-900 ml-20 mt-2">
                             Список
                         </div>
-                        <div className="fixed text-7xl font-caveat text-gray-900 ml-28 mt-16">
+                        <div className="fixed text-5xl sm:text-7xl font-caveat text-gray-900 ml-28 mt-16">
                             покупок
                         </div>
                     </div>
