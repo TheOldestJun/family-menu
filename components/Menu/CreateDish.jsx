@@ -2,7 +2,7 @@ import { CardContent } from "../ui/card";
 import { Input } from "../ui/input";
 import ProductSelect from "../ProductSelect";
 import { useGetAllProductsQuery, useAddProductMutation } from "@/store/services/products";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { capitalize } from "@/lib/utils";
 import toast from "react-hot-toast";
 import { Label } from "../ui/label";
@@ -14,8 +14,9 @@ export default function CreateDish({ category }) {
     const [selectedProducts, setSelectedProducts] = useState([]);
     console.log(selectedProducts);
     const [dishTitle, setDishTitle] = useState("");
-    const [imageFile, setImageFile] = useState("");
-    console.log(imageFile);
+    //const [imageFile, setImageFile] = useState("");
+    const inputFileRef = useRef(null);
+    const [blob, setBlob] = useState(null);
     const [instructions, setInstructions] = useState("");
     const [addProduct] = useAddProductMutation();
     const { data, error, isLoading } = useGetAllProductsQuery({
@@ -36,6 +37,30 @@ export default function CreateDish({ category }) {
         toast.success("Продукт успешно создан");
     };
 
+    const handleImgSave = async () => {
+        const file = inputFileRef.current.files[0];
+        if (!file) {
+            toast.error("Файл не выбран");
+            return;
+        }
+        const response = await fetch(
+            `/api/dishes/img-upload?filename=${file.name}`,
+            {
+                method: 'POST',
+                body: file,
+            },
+        );
+
+        const newBlob = (await response.json());
+        if (!newBlob) {
+            toast.error("Не удалось загрузить изображение");
+            return;
+        } else {
+            toast.success("Изображение загружено");
+        }
+        setBlob(newBlob);
+    }
+
     const handleCreateRecipe = async () => {
         try {
             const result = await axios.post("/api/dishes/add", {
@@ -43,7 +68,7 @@ export default function CreateDish({ category }) {
                 ingredients: selectedProducts,
                 instructions,
                 category,
-                img: imageFile,
+                img: blob.url,
             })
             if (result.status === 200)
                 toast.success("Блюдо успешно создано");
@@ -66,11 +91,15 @@ export default function CreateDish({ category }) {
                     onChange={(e) => setDishTitle(e.target.value)}
                     className="w-full text-3xl" />
                 <Label htmlFor="image" className="text-2xl">Изображение блюда</Label>
-                <Input
-                    id="image"
-                    type="file"
-                    onChange={(e) => setImageFile(e.target.files[0])}
-                    className="w-full file:text-3xl cursor-pointer text-2xl" />
+                <div className="flex w-full items-center space-x-2">
+                    <Input
+                        id="image"
+                        type="file"
+                        ref={inputFileRef}
+                        className="w-full file:text-3xl cursor-pointer text-2xl" />
+                    <Button onClick={handleImgSave} className="text-3xl">Сохранить</Button>
+                </div>
+                {blob && <div className="text-2xl">{blob.url}</div>}
                 <Label htmlFor="products" className="text-2xl">Ингредиенты</Label>
                 <ProductSelect
                     id="products"
