@@ -12,7 +12,6 @@ import { Textarea } from "@/components/ui/textarea"
 
 export default function CreateDish({ category }) {
     const [selectedProducts, setSelectedProducts] = useState([]);
-    console.log(selectedProducts);
     const [dishTitle, setDishTitle] = useState("");
     const [imageFile, setImageFile] = useState(false);
     const inputFileRef = useRef(null);

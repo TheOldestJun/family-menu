@@ -1,15 +1,17 @@
 import { useGetDishesByCategoryQuery } from "@/store/services/dishes";
 import { CardContent } from "../ui/card";
 import Image from "next/image";
+import { ReloadIcon } from "@radix-ui/react-icons";
+import { useAddItemsMutation } from "@/store/services/shoplist";
 
 
 export default function ChooseDish({ category }) {
-
+    const [addItems] = useAddItemsMutation();
     const { data, isLoading, error } = useGetDishesByCategoryQuery(category.url);
     if (isLoading)
         return (
             <div className="h-screen flex items-center justify-center">
-                <div className="text-3xl text-gray-600">Загрузка...</div>
+                <div className="text-3xl text-gray-600"><ReloadIcon className="w-10 h-10 animate-spin" /></div>
             </div>
         );
     if (error) return (
@@ -17,7 +19,12 @@ export default function ChooseDish({ category }) {
             <div className="text-3xl  text-gray-600">{`Ошибка на сервере: ${error.message}`}</div>
         </div>
     );
-    console.log(data);
+
+    const addMenuItem = () => {
+        //TODO: add items to shopping list table in DB
+        //TODO: add dishes to menu list table in DB
+    }
+
     const dishes = data?.map((dish) => {
         return (
             <>
