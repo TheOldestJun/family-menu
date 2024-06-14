@@ -29,14 +29,14 @@ export default function ChooseDish({ category }) {
         return (
             <>
                 <div
-                    className="relative cursor-pointer py-1.5 text-3xl inline-block"
+                    className="relative cursor-pointer text-3xl inline-block hover:ring-4 ring-primary rounded-3xl"
                     key={dish.id}
                 >
                     <Image
                         src={dish.img}
                         width={640}
                         height={426}
-                        className="rounded-3xl opacity-80 block"
+                        className="rounded-3xl opacity-80 block "
                         alt="dish image"
                     />
                     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-8xl sm:text-7xl text-gray-800 text-center">
