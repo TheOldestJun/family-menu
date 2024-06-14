@@ -10,7 +10,7 @@ export default function Menu() {
     )
     if (error) return (
         <div className="fixed top-[20%]">
-            <div className="text-5xl font-caveat text-gray-400">{`Ошибка сервера: ${error.message}`}</div>
+            <div className="text-5xl font-caveat text-gray-400">{`Ошибка на сервере: ${error.message}`}</div>
         </div>
     )
     const categories = data.map(category => {

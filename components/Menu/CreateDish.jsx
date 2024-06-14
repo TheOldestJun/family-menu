@@ -14,7 +14,7 @@ export default function CreateDish({ category }) {
     const [selectedProducts, setSelectedProducts] = useState([]);
     console.log(selectedProducts);
     const [dishTitle, setDishTitle] = useState("");
-    //const [imageFile, setImageFile] = useState("");
+    const [imageFile, setImageFile] = useState(false);
     const inputFileRef = useRef(null);
     const [blob, setBlob] = useState(null);
     const [instructions, setInstructions] = useState("");
@@ -28,7 +28,11 @@ export default function CreateDish({ category }) {
                 <div className="text-3xl text-gray-600">Загрузка...</div>
             </div>
         );
-    if (error) return <h1>Error</h1>;
+    if (error) return (
+        <div className="h-screen flex items-center justify-center">
+            <div className="text-3xl text-gray-600">{`Ошибка на сервере: ${error.message}`}</div>
+        </div>
+    )
     let products = data?.map((product) => {
         return { value: product.id, label: product.title };
     });
@@ -57,6 +61,7 @@ export default function CreateDish({ category }) {
             return;
         } else {
             toast.success("Изображение загружено");
+            setImageFile(true);
         }
         setBlob(newBlob);
     }
@@ -70,8 +75,15 @@ export default function CreateDish({ category }) {
                 category,
                 img: blob.url,
             })
-            if (result.status === 200)
+            if (result.status === 200) {
                 toast.success("Блюдо успешно создано");
+                setImageFile(false);
+                setDishTitle("");
+                setSelectedProducts([]);
+                setInstructions("");
+                inputFileRef.current.value = null;
+                setBlob(null);
+            }
         } catch (error) {
             if (error.issues) {
                 toast.error(error.issues[0].message);
@@ -117,12 +129,18 @@ export default function CreateDish({ category }) {
                     value={instructions}
                     onChange={(e) => setInstructions(e.target.value)}
                 />
-                <br />
-                <Button
-                    className="w-full text-3xl"
-                    onClick={handleCreateRecipe}>
-                    Сохранить
-                </Button>
+                {imageFile && (
+                    <>
+                        <br />
+                        <Button
+                            className="w-full text-3xl"
+                            onClick={handleCreateRecipe}>
+                            Сохранить
+                        </Button>
+                    </>
+
+                )}
+
             </CardContent>
         </>
     )

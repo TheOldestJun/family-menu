@@ -1,7 +1,7 @@
 "use client";
 import { Card, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CreateDish } from "@/components/Menu";
+import { CreateDish, ChooseDish } from "@/components/Menu";
 import { useGetCategoryQuery } from "@/store/services/categories";
 
 export default function Page({ params }) {
@@ -28,7 +28,9 @@ export default function Page({ params }) {
               Создать
             </TabsTrigger>
           </TabsList>
-          <TabsContent value="choose"></TabsContent>
+          <TabsContent value="choose">
+            <ChooseDish category={data} />
+          </TabsContent>
           <TabsContent value="create">
             <CreateDish category={data} />
           </TabsContent>

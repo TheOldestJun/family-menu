@@ -1,3 +1,4 @@
 import CreateDish from "./CreateDish";
+import ChooseDish from "./ChooseDish";
 
-export { CreateDish };
+export { CreateDish, ChooseDish };

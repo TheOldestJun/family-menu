@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 export async function POST(request) {
   const body = await request.json();
   const { title, ingredients, instructions, category, img } = body;
-  if (!title || !ingredients || !category) {
+  if (!title || !category) {
     return NextResponse.json(
       { error: "Чего-то не хватает..." },
       { status: 400 }

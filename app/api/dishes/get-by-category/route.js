@@ -10,6 +10,12 @@ export async function GET(request) {
           url: url,
         },
       },
+      include: {
+        ingredients: true,
+      },
+      orderBy: {
+        title: "asc",
+      },
     });
     return NextResponse.json(result, { status: 200 });
   } catch (error) {
