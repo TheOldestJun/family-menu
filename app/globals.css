@@ -69,3 +69,10 @@
     scrollbar-width: none; /* Firefox */
   }
 }
+
+.unselectable {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}

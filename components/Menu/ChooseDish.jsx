@@ -19,9 +19,10 @@ export default function ChooseDish({ category }) {
             <div className="text-3xl  text-gray-600">{`Ошибка на сервере: ${error.message}`}</div>
         </div>
     );
-
-    const addMenuItem = () => {
+    console.log(data)
+    const addMenuItem = (dishIngredients) => {
         //TODO: add items to shopping list table in DB
+        addItems(dishIngredients)
         //TODO: add dishes to menu list table in DB
     }
 
@@ -31,6 +32,7 @@ export default function ChooseDish({ category }) {
                 <div
                     className="relative cursor-pointer text-3xl inline-block hover:ring-4 ring-primary rounded-3xl"
                     key={dish.id}
+                    onClick={() => addMenuItem(dish.ingredients)}
                 >
                     <Image
                         src={dish.img}

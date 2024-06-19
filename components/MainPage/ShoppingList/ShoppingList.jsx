@@ -36,7 +36,7 @@ export default function ShoppingList() {
                     alt="shopping list item background"
                 />
                 <div className="fixed" onClick={handleClick}>
-                    <div className={`text-lg md:text-xl lg:text-3xl font-caveat text-gray-600 ml-20 cursor-pointer ${done ? 'line-through' : ''}`}>
+                    <div className={`unselectable text-lg md:text-xl lg:text-3xl font-caveat text-gray-600 ml-20 cursor-pointer ${done ? 'line-through' : ''}`}>
                         {item.product}
                     </div>
                 </div>
