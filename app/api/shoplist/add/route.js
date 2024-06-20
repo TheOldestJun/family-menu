@@ -1,6 +1,5 @@
 import prisma from "@/prisma";
 import { NextResponse } from "next/server";
-import { connect } from "react-redux";
 
 export async function POST(request) {
   const body = await request.json();

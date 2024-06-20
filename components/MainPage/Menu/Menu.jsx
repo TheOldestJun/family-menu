@@ -16,7 +16,7 @@ export default function Menu() {
     const categories = data.map(category => {
         return (
             <div
-                className={` cursor-pointer py-1.5 text-4xl sm:text-4xl md:text-5xl font-caveat text-gray-400`}
+                className={` cursor-pointer py-1.5 text-4xl sm:text-4xl md:text-5xl text-gray-400`}
                 key={category.id}
             >
                 <Link href={`/menu/${category.url}`}>{category.title}</Link>
@@ -24,7 +24,7 @@ export default function Menu() {
         )
     })
     return (
-        <div className="fixed top-[20%] md:top-[14%]">
+        <div className="absolute flex flex-col justify-center items-start top-[20%]">
             {categories}
         </div>
     )

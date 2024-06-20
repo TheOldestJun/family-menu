@@ -36,7 +36,7 @@ export default function MainPage() {
   }, []);
   return (
     <div className="grid grid-flow-row grid-cols-1 md:grid-cols-2 container mx-auto gap-6 mt-6">
-      <MenuPad className="menu-animation w-full h-full flex items-center justify-center opacity-0 relative" />
+      <MenuPad className="menu-animation w-full h-full flex items-center justify-center opacity-0" />
       <ShoppingListPad className="shop-animation w-full h-full flex items-center justify-center opacity-0 relative" />
     </div>
   );

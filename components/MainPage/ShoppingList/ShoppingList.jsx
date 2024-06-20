@@ -1,31 +1,23 @@
 import Image from "next/image"
-import { useState } from "react"
-
-let mockData = [
-    { id: 1, product: "Potatoes", done: false },
-    { id: 2, product: "Tomatoes", done: true },
-    { id: 3, product: "Carrots", done: false },
-    { id: 4, product: "Cucumbers", done: true },
-    { id: 5, product: "Onions", done: false },
-    { id: 6, product: "Cabbage", done: true },
-    { id: 7, product: "Broccoli", done: false },
-    { id: 8, product: "Eggplant", done: true },
-    { id: 9, product: "Spinach", done: false },
-    { id: 10, product: "Cauliflower", done: true },
-    { id: 11, product: "Parsley", done: false },
-    { id: 12, product: "Garlic", done: true },
-    { id: 13, product: "Pepper", done: false },
-    { id: 14, product: "Mushrooms", done: true },
-    { id: 15, product: "Cinnamon", done: false },
-    { id: 16, product: "Lemon", done: true },
-]
+import { useGetShopListQuery, useUpdateItemsMutation } from "@/store/services/shoplist"
 
 export default function ShoppingList() {
+    const [updateItems] = useUpdateItemsMutation()
+    const { data, isLoading, error } = useGetShopListQuery()
 
-    const shopList = mockData.map((item) => {
-        const [done, setDone] = useState(item.done)
+    if (isLoading) return (
+        <div className="fixed top-[20%]">
+            <div className="text-5xl font-caveat text-gray-400">Загрузка...</div>
+        </div>
+    )
+    if (error) return (
+        <div className="fixed top-[20%]">
+            <div className="text-5xl font-caveat text-gray-400">{`Ошибка на сервере: ${error.message}`}</div>
+        </div>
+    )
+    const shopList = data?.map((item) => {
         const handleClick = () => {
-            setDone(!done)
+            updateItems(item.id)
         }
         return (
             <div className="flex relative" key={item.id}>
@@ -36,8 +28,8 @@ export default function ShoppingList() {
                     alt="shopping list item background"
                 />
                 <div className="fixed" onClick={handleClick}>
-                    <div className={`unselectable text-lg md:text-xl lg:text-3xl font-caveat text-gray-600 ml-20 cursor-pointer ${done ? 'line-through' : ''}`}>
-                        {item.product}
+                    <div className={`unselectable text-lg md:text-xl lg:text-3xl font-caveat text-gray-600 ml-20 cursor-pointer ${item.done ? 'line-through' : ''}`}>
+                        {item.product.title}
                     </div>
                 </div>
             </div>

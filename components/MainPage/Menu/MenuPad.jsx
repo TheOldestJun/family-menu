@@ -5,7 +5,7 @@ export default function MenuPad({ className }) {
     return (
         <>
             <div className={className}>
-                <div className="flex w-full h-full justify-center items-start">
+                <div className="flex relative w-full h-full justify-center items-start">
                     <Image
                         src="/img/menu-bg.webp"
                         alt="plate background image"

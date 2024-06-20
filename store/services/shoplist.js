@@ -24,6 +24,14 @@ export const shoplistApi = createApi({
         url: `update?id=${id}`,
         method: "PUT",
       }),
+      onQueryStarted(id, { dispatch, queryFulfilled }) {
+        const patchResult = dispatch(
+          api.util.updateQueryData("getShopList", id, (draft) => {
+            Object.assign(draft, patch);
+          })
+        );
+        queryFulfilled.catch(patchResult.undo);
+      },
       invalidatesTags: ["ShopList"],
     }),
   }),
