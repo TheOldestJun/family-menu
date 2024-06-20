@@ -58,4 +58,5 @@ model ShopList {
   product   Product @relation(fields: [productId], references: [id])
   productId Int
   done      Boolean @default(false)
+  createdAt DateTime @default(now()) @db.Date
 }
